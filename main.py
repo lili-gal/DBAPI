@@ -1,5 +1,6 @@
 from API import HeadHunterAPI
 from DBManager import DBManager
+from config import APIconf
 
 ''' Функция пользовательского интерфейса'''
 def user_interface():
@@ -25,9 +26,16 @@ def user_interface():
 
 
 if __name__ == '__main__':
+    params = {
+        'host': APIconf.get('DBSettings')['host'],
+        'dbname': APIconf.get('DBSettings')['dbname'],
+        'user': APIconf.get('DBSettings')['user'],
+        'password': APIconf.get('DBSettings')['password'],
+        'port': APIconf.get('DBSettings')['port']
+    }
     data = HeadHunterAPI.get_vacancies()
     emps = HeadHunterAPI.get_emp()
-    dbm = DBManager(host="localhost", dbname="vacancies", user="postgres", password="Dfcmrf74", port=5432)
+    dbm = DBManager(host=params['host'], dbname=params['dbname'], user=params['user'], password=params['password'], port=params['port'])
     dbm.delete_tables()
     dbm.create_tables()
     dbm.insert_emps_to_db(emps)
