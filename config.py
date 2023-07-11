@@ -10,5 +10,12 @@ APIconf = {
     '8930736',
     '6067447',
     '172'
-    ]
+    ],
+    'DBSettings': {
+        'host': 'localhost',
+        'dbname': 'vacancies',
+        'user': 'postgres',
+        'password': 'Dfcmrf74',
+        'port': 5432
+    }
 }

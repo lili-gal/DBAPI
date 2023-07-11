@@ -1,15 +1,3 @@
-import psycopg2
-
-'''Класс для работы с базой данных'''
-class DBManager:
-    def __init__(self, dbname, user, password, host, port):
-        self.conn = psycopg2.connect(host=host,
-                                    database=dbname,
-                                    user=user,
-                                    password=password,
-                                    port=port
-                                    )
-    '''Функция создания таблиц'''
     def create_tables(self):
         with self.conn.cursor() as cur:
             cur.execute("""
